@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+// https://stackoverflow.com/questions/53716751/location-of-authapi-middleware
+Route::post('/login',function(){
+    return "login";
+});
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/test',function(){
