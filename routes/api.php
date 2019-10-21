@@ -15,9 +15,8 @@ use Illuminate\Http\Request;
 // https://stackoverflow.com/questions/53716751/location-of-authapi-middleware
 Route::post('/login','API\Login');
 
-Route::post('/udic-app',function(){
-    return "udic app";
-});
+// 測試用的假APP
+Route::any('/udic-app','Test\FakeApp');
 
 // Authorization:API_KEY
 Route::group(['middleware' => ['auth.api']], function () {
