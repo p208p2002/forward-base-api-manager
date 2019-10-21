@@ -17,7 +17,8 @@ Route::post('/login',function(){
     return "login";
 });
 
-Route::group(['middleware' => ['auth:api']], function () {
+// Authorization:API_KEY
+Route::group(['middleware' => ['auth.api']], function () {
     Route::get('/test',function(){
         return 'ok';
     });
