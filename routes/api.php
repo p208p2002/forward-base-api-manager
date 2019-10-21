@@ -15,9 +15,15 @@ use Illuminate\Http\Request;
 // https://stackoverflow.com/questions/53716751/location-of-authapi-middleware
 Route::post('/login','API\Login');
 
+Route::post('/udic-app',function(){
+    return "udic app";
+});
+
 // Authorization:API_KEY
 Route::group(['middleware' => ['auth.api']], function () {
     Route::get('/test',function(){
         return 'ok';
     });
+    //匹配任何方法，塞入指定APP認證key轉送udic service url、header、body資料
+    Route::any('/service/{service_url}', 'API\ServiceAccess')->where('service_url', '.*');
 });
