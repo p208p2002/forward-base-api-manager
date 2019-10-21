@@ -13,9 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 // https://stackoverflow.com/questions/53716751/location-of-authapi-middleware
-Route::post('/login',function(){
-    return "login";
-});
+Route::post('/login','API\Login');
 
 // Authorization:API_KEY
 Route::group(['middleware' => ['auth.api']], function () {
