@@ -38,7 +38,15 @@ class AppKeyManageController extends Controller
     public function store(Request $request)
     {
         //
-        return 'store';
+        $appName = $request->appName;
+        $appPWD = $request->appPWD;
+        if($appName!='' && $appPWD!=''){
+            $AKM = new AppKeyManage();
+            $AKM->name = $appName;
+            $AKM->key = $appPWD;
+            $AKM->save();
+        }        
+        return back();
     }
 
     /**
