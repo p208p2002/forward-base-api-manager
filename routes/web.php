@@ -21,8 +21,13 @@ Route::group(['prefix'=>'admin','middleware'=>['auth.admin']],function(){
     Route::get('/', function () {
         return view('admin.index');
     });
-    Route::get('/app-key-manage', function () {
-        return view('admin.app_key_manage');
+    // Route::get('/app-key-manage', function () {
+    //     return view('admin.app_key_manage');
+    // });
+    Route::resource('/app-key-manage', 'AppKeyManageController');
+    Route::get('/test',function(){
+        // dd(App\AppKeyManage::all());
+        // return 'ok';
     });
 });
 
