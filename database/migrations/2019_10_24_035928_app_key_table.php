@@ -13,10 +13,13 @@ class AppKeyTable extends Migration
      */
     public function up()
     {
-        //
+        //        
         Schema::create('app_key_table',function(Blueprint $table){
-            $table->string('name', 100)->primary();
+            $table->bigIncrements('id');
+            $table->string('name', 100);
             $table->string('key', 64);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
