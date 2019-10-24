@@ -10,7 +10,7 @@
 @section('right_content')
 <body>
     <div class="container">
-       admin board
+       appkey
     </div>
 </body>
 </html>
