@@ -11,8 +11,16 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('index');
+});
+
+Route::group(['prefix'=>'admin','middleware'=>['auth.admin']],function(){
+    Route::get('/', function () {
+        return view('admin.index');
+    });
 });
 
 Auth::routes();
