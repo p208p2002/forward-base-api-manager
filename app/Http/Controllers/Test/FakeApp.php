@@ -16,7 +16,7 @@ class FakeApp extends Controller
     public function __invoke(Request $request)
     {
         // return $request->method()." SUCCESS";
-        $AppKey = 'KEY_UDIC_APP';
+        $AppKey = '7wwrJd2rR3X1dGfMSYE8SlEgRM1thhmA';
         $keyFromReq = $request->header('AppKey');
         dd('認證狀態',strcmp($AppKey,$keyFromReq)==0,$request->header(),$request->all());       
     }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Ixudra\Curl\Facades\Curl;
-
+use App\AppKeyManage;
 class ServiceAccess extends Controller
 {
     /**
@@ -38,9 +38,17 @@ class ServiceAccess extends Controller
 
         // get app key
         $appKey = null;
-        if ($targetApp == 'UDIC-APP') {
-            $appKey = "KEY_UDIC_APP";
+        // if ($targetApp == 'UDIC-APP') {
+        //     $appKey = "KEY_UDIC_APP";
+        // }
+        $AKM = AppKeyManage::where('name',$targetApp)->first();
+        if ($AKM == null) {
+            return response()->json([
+                'ServerMsg' => 'APP Name miss match, check your App-Name'
+            ], 400);
         }
+
+        $appKey = $AKM->key;
         array_push($newHeaders, 'AppKey' . ':' . strval($appKey));
 
         $curl =  Curl::to($service_url)

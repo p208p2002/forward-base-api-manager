@@ -22,6 +22,10 @@
                         <li class="list-group-item {{Request::path() == 'admin/app-key-manage'?'active':''}}">APP KEY 管理
                         </li>
                     </a>
+                    <a href={{ url('#') }}>
+                        <li class="list-group-item {{Request::path() == '#'?'active':''}}">WEB SSH
+                        </li>
+                    </a>
                 </ul>
             </div>
         </div>

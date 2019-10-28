@@ -69,7 +69,7 @@
             <button class="card-del btn btn-sm btn-danger"
                 onclick="event.preventDefault();document.getElementById('{{"AppKeyDel".$Appkey->id}}').submit();">
                 del</button>
-            <form id={{"AppKeyDel".$Appkey->id}} action="{{ url('admin/app-key-manage/'.$Appkey->id) }}" method="POST">
+            <form style="position:absolute;" id={{"AppKeyDel".$Appkey->id}} action="{{ url('admin/app-key-manage/'.$Appkey->id) }}" method="POST">
                 @method('DELETE')
                 @csrf
             </form>
