@@ -19,9 +19,9 @@ HOST/Prefix/Action
 > GET、POST、PUT、DELETE、PATCH
 - Authorization、AppName檢查
 - 設置正確的AppName，通過檢查後會將原請求塞入AppKey(保存於平台資料庫內)，APP端檢查僅需檢查KEY是否符合
-### 呼叫說明
+### API呼叫說明
 #### Header Data
-- Authorization:str(user token)
+- Authorization:str(user token，由/login取得)
 - App-Name:str(欲使用的服務名稱，server端會使用此tag找出AppKey以供存取)
 - 其他資料:一併轉送
 
