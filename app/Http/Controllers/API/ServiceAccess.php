@@ -35,12 +35,11 @@ class ServiceAccess extends Controller
                 array_push($newHeaders, $key . ':' . strval($value[0]));
             }
         }
+    
 
         // get app key
         $appKey = null;
-        // if ($targetApp == 'UDIC-APP') {
-        //     $appKey = "KEY_UDIC_APP";
-        // }
+       
         $AKM = AppKeyManage::where('name',$targetApp)->first();
         if ($AKM == null) {
             return response()->json([
@@ -50,7 +49,6 @@ class ServiceAccess extends Controller
 
         $appKey = $AKM->key;
         array_push($newHeaders, 'AppKey' . ':' . strval($appKey));
-
         $curl =  Curl::to($service_url)
             ->withHeaders($newHeaders)                    
             ->withData($inputData);
@@ -71,7 +69,6 @@ class ServiceAccess extends Controller
                 'ServerMsg' => 'match http method fail'
             ], 500);
         }
-        
         return response($response->content,$response->status);
     }
 }

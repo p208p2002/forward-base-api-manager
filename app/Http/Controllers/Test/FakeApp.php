@@ -16,8 +16,14 @@ class FakeApp extends Controller
     public function __invoke(Request $request)
     {
         // return $request->method()." SUCCESS";
-        $AppKey = '7wwrJd2rR3X1dGfMSYE8SlEgRM1thhmA';
+        $AppKey = '1yIyEY1EWrw8UZWLy2mffvToDqX1cNWs';
         $keyFromReq = $request->header('AppKey');
-        dd('認證狀態',strcmp($AppKey,$keyFromReq)==0,$request->header(),$request->all());       
+        // dd('認證狀態',strcmp($AppKey,$keyFromReq)==0,$request->header(),$request->all());
+        echo $AppKey == $keyFromReq?'認證通過':'認證失敗';
+        echo '<br/>';
+        echo 'HTTP Method:'.$request->method();
+        echo '<br/><br/>';
+        echo '接收到的Header資訊與Request:<br/>';
+        return response()->json(['header' => $request->header(),'request_all'=>$request->all()]);
     }
 }
