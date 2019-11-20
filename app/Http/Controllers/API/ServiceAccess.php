@@ -18,7 +18,8 @@ class ServiceAccess extends Controller
     {
         $reqMethod = $request->method();
         $header = $request->header();
-        $inputData = $request->input();        
+        $inputData = $request->getContent();
+        // dd($inputData,$header);  
         $targetApp = $request->header('App-Name');
         if ($targetApp == null) {
             return response()->json([
@@ -51,24 +52,27 @@ class ServiceAccess extends Controller
         array_push($newHeaders, 'AppKey' . ':' . strval($appKey));
         $curl =  Curl::to($service_url)
             ->withHeaders($newHeaders)                    
-            ->withData($inputData);
+            ->withData($inputData)
+            ->withResponseHeaders()
+            ->returnResponseObject();
 
         if ($reqMethod == 'GET') {
-            $response = $curl->returnResponseObject()->get();
+            $response = $curl->get();
         } elseif ($reqMethod == 'POST') {
-            $response = $curl->returnResponseObject()->post();
+            $response = $curl->post();
         } elseif ($reqMethod == 'PUT') {
-            $response = $curl->returnResponseObject()->put();
+            $response = $curl->put();
         } elseif ($reqMethod == 'DELETE') {
-            $response = $curl->returnResponseObject()->delete();
+            $response = $curl->delete();
         } elseif ($reqMethod == 'PATCH') {
-            $response = $curl->returnResponseObject()->patch();
+            $response = $curl->patch();
         }
         if ($response == null && $response->status != 200) {
             return response()->json([
                 'ServerMsg' => 'match http method fail'
             ], 500);
         }
-        return response($response->content,$response->status);
+        
+        return response($response->content,$response->status,$response->headers);
     }
 }

@@ -24,6 +24,6 @@ class FakeApp extends Controller
         echo 'HTTP Method:'.$request->method();
         echo '<br/><br/>';
         echo '接收到的Header資訊與Request:<br/>';
-        return response()->json(['header' => $request->header(),'request_all'=>$request->all()]);
+        return response()->json(['header' => $request->header(),'request_all'=>$request->getContent()]);
     }
 }
