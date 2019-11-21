@@ -20,10 +20,10 @@ class ServiceAccess extends Controller
         $header = $request->header();
         $inputData = $request->getContent();
         // dd($inputData,$header);  
-        $targetApp = $request->header('App-Name');
+        $targetApp = $request->header('AppName');
         if ($targetApp == null) {
             return response()->json([
-                'ServerMsg' => 'App-Name can not be null in Header'
+                'ServerMsg' => 'AppName can not be null in Header'
             ], 400);
         }
 
@@ -44,7 +44,7 @@ class ServiceAccess extends Controller
         $AKM = AppKeyManage::where('name',$targetApp)->first();
         if ($AKM == null) {
             return response()->json([
-                'ServerMsg' => 'APP Name miss match, check your App-Name'
+                'ServerMsg' => 'APP Name miss match, check your AppName'
             ], 400);
         }
 

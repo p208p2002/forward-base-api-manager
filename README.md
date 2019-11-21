@@ -22,7 +22,7 @@ HOST/Prefix/Action
 ### API呼叫說明
 #### Header Data
 - Authorization:str(user token，由/login取得)
-- App-Name:str(欲使用的服務名稱，server端會使用此tag找出AppKey以供存取)
+- AppName:str(欲使用的服務名稱，server端會使用此tag找出AppKey以供存取)
 - 其他資料:一併轉送
 
 #### Body Data
