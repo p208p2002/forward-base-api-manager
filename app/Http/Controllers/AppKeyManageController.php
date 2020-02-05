@@ -85,7 +85,11 @@ class AppKeyManageController extends Controller
     public function update(Request $request, $id)
     {
         //
-        return 'update';
+        $AKM = AppKeyManage::find($id);
+        $AKM->key = $request->appPWD;
+        $AKM->free_request_times_pre_day = $request->freeReq;
+        $AKM->save();
+        return back();
     }
 
     /**

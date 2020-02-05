@@ -49,7 +49,7 @@
                         <div class="input-group">
                             <input id="appPWD" name="appPWD" class="form-control" placeholder="App key">
                             <div class="input-group-append">
-                                <button 
+                                <button
                                     onclick="event.preventDefault();var pwd=document.getElementById('appPWD');pwd.value=makeid(32)"
                                     class="btn btn-primary">自動生成</button>
                             </div>
@@ -59,7 +59,8 @@
                     <div class="form-group">
                         <label>每日免費請求次數</label>
                         <div class="input-group">
-                            <input id="freeReq" name="freeReq" class="form-control" placeholder="Free requests pre-day" value="100">                        
+                            <input id="freeReq" name="freeReq" class="form-control" placeholder="Free requests pre-day"
+                                value="100">
                         </div>
                         <small id="emailHelp" class="form-text text-muted">每個帳號允許的每日免費呼叫次數</small>
                     </div>
@@ -76,28 +77,42 @@
             <button class="card-del btn btn-sm btn-danger"
                 onclick="event.preventDefault();document.getElementById('{{"AppKeyDel".$Appkey->id}}').submit();">
                 del</button>
-            <form style="position:absolute;" id={{"AppKeyDel".$Appkey->id}} action="{{ url('admin/app-key-manage/'.$Appkey->id) }}" method="POST">
+            <form style="position:absolute;" id={{"AppKeyDel".$Appkey->id}}
+                action="{{ url('admin/app-key-manage/'.$Appkey->id) }}" method="POST">
                 @method('DELETE')
                 @csrf
             </form>
             <div class="card-body">
-                <h5 class="card-title">{{ $Appkey->name }}</h5>
-                <span class="card-subtitle mb-2 text-muted">App Key</span>
-                <div class="input-group">
-                    <input class="form-control" type="text" 
-                    id={{'AppkeyPwd'.$Appkey->id}} value={{ $Appkey->key }}/>
-                    <div class="input-group-append">
-                        <button 
-                        data-clipboard-target={{'#AppkeyPwd'.$Appkey->id}}
-                        class="btn btn-primary">複製</button>
+                <form action={{url('admin/app-key-manage/'.$Appkey->id)}} method="POST">
+                    @method('PUT')
+                    @csrf
+                    <h5 class="card-title">{{ $Appkey->name }}</h5>
+                    <span class="card-subtitle mb-2 text-muted">App Key</span>
+                    <div class="input-group">
+                        <input class="form-control" type="text" id={{'AppkeyPwd'.$Appkey->id}}
+                            name="appPWD"
+                            value="{{ $Appkey->key }}" />
+                        <div class="input-group-append">
+                            <button data-clipboard-target={{'#AppkeyPwd'.$Appkey->id}}
+                                class="btn btn-primary">複製</button>
+                        </div>
                     </div>
-                    
-                </div>
-                <span class="card-text"></span>
+                    <br>
+                    <span class="card-subtitle mb-2 text-muted">每日免費請求次數</span>
+                    <div class="input-group">
+                        <input class="form-control" type="text" id={{'AppkeyPwd'.$Appkey->id}}
+                            name="freeReq"
+                            value="{{ $Appkey->free_request_times_pre_day }}">
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">儲存</button>
+                    </div>
+                </form>
             </div>
         </div>
         @endforeach
     </div>
 </body>
+
 </html>
 @endsection
