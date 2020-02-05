@@ -56,6 +56,13 @@
                         </div>
                         <small id="emailHelp" class="form-text text-muted">自訂的密碼</small>
                     </div>
+                    <div class="form-group">
+                        <label>每日免費請求次數</label>
+                        <div class="input-group">
+                            <input id="freeReq" name="freeReq" class="form-control" placeholder="Free requests pre-day" value="100">                        
+                        </div>
+                        <small id="emailHelp" class="form-text text-muted">每個帳號允許的每日免費呼叫次數</small>
+                    </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary">新增APP</button>
                     </div>

@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\AppKeyManage;
+
 use Illuminate\Http\Request;
 
-class AppKeyManageController extends Controller
+class UserAuthLimit extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class AppKeyManageController extends Controller
     public function index()
     {
         //
-        $AppKeys =  AppKeyManage::all();
-        return view('admin.app_key_manage',['AppKeys'=>$AppKeys]);
+        return view('admin.user_ahth_limit');
     }
 
     /**
@@ -26,7 +25,6 @@ class AppKeyManageController extends Controller
     public function create()
     {
         //
-        return 'create';
     }
 
     /**
@@ -38,17 +36,6 @@ class AppKeyManageController extends Controller
     public function store(Request $request)
     {
         //
-        $appName = $request->appName;
-        $appPWD = $request->appPWD;
-        $freeReq = $request->freeReq;
-        if($appName!='' && $appPWD!=''){
-            $AKM = new AppKeyManage();
-            $AKM->name = $appName;
-            $AKM->key = $appPWD;
-            $AKM->free_request_times_pre_day = $freeReq;
-            $AKM->save();
-        }        
-        return back();
     }
 
     /**
@@ -60,7 +47,6 @@ class AppKeyManageController extends Controller
     public function show($id)
     {
         //
-        return 'show';
     }
 
     /**
@@ -72,7 +58,6 @@ class AppKeyManageController extends Controller
     public function edit($id)
     {
         //
-        return 'edit';
     }
 
     /**
@@ -85,7 +70,6 @@ class AppKeyManageController extends Controller
     public function update(Request $request, $id)
     {
         //
-        return 'update';
     }
 
     /**
@@ -96,8 +80,6 @@ class AppKeyManageController extends Controller
      */
     public function destroy($id)
     {
-        //        
-        AppKeyManage::find($id)->delete();
-        return back();   
+        //
     }
 }

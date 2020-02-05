@@ -22,8 +22,8 @@
                         <li class="list-group-item {{Request::path() == 'admin/app-key-manage'?'active':''}}">APP KEY 管理
                         </li>
                     </a>
-                    <a href={{ url('#') }}>
-                        <li class="list-group-item {{Request::path() == '#'?'active':''}}">使用者權限管理
+                    <a href={{ url('admin/user-auth-limit') }}>
+                        <li class="list-group-item {{Request::path() == 'admin/user-auth-limit'?'active':''}}">使用者權限管理
                         </li>
                     </a>
                 </ul>

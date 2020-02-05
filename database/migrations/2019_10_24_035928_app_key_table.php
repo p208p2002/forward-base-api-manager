@@ -31,5 +31,6 @@ class AppKeyTable extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('app_key_table');
     }
 }
