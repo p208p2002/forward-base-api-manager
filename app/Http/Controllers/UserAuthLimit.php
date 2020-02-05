@@ -14,7 +14,7 @@ class UserAuthLimit extends Controller
     public function index()
     {
         //
-        return view('admin.user_ahth_limit');
+        return view('admin.user_auth_limit');
     }
 
     /**
