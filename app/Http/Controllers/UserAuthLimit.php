@@ -15,10 +15,14 @@ class UserAuthLimit extends Controller
     {
         //
         $query = $request->q;
-        if($query == null)
-            $users = USER::limit(10)->get();
-        else
+        if($query == null){
+            $users = USER::latest()->limit(10)->get();
+        }
+        else{
             $users = USER::where('email',$query)->get();
+            // User::where('email',$query)->first()->appAuth;
+        }
+            
         return view('admin.user_auth_limit',["users"=>$users]);
     }
 
