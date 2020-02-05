@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
 
 class UserAuthLimit extends Controller
@@ -11,10 +11,15 @@ class UserAuthLimit extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return view('admin.user_auth_limit');
+        $query = $request->q;
+        if($query == null)
+            $users = USER::limit(10)->get();
+        else
+            $users = USER::where('email',$query)->get();
+        return view('admin.user_auth_limit',["users"=>$users]);
     }
 
     /**
@@ -36,6 +41,8 @@ class UserAuthLimit extends Controller
     public function store(Request $request)
     {
         //
+        $users = USER::where('email',$request->email)->get();
+        return view('admin.user_auth_limit',["users"=>$users]);
     }
 
     /**
@@ -44,9 +51,10 @@ class UserAuthLimit extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($email)
     {
         //
+        return view('admin.user_auth_limit');
     }
 
     /**
