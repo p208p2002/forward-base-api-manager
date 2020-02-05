@@ -23,7 +23,7 @@
                         </li>
                     </a>
                     <a href={{ url('#') }}>
-                        <li class="list-group-item {{Request::path() == '#'?'active':''}}">WEB SSH
+                        <li class="list-group-item {{Request::path() == '#'?'active':''}}">使用者權限管理
                         </li>
                     </a>
                 </ul>
