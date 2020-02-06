@@ -17,12 +17,12 @@ class FakeApp extends Controller
     {
         $AppKey = '1yIyEY1EWrw8UZWLy2mffvToDqX1cNWs';
         $keyFromReq = $request->header('AppKey');
-        
-        echo $AppKey == $keyFromReq?'認證通過':'認證失敗';
-        echo '<br/>';
-        echo 'HTTP Method:'.$request->method();
-        echo '<br/><br/>';
-        echo '接收到的Header資訊與Request:<br/>';
-        return response()->json(['header' => $request->header(),'request_all'=>$request->getContent()]);
+        $auth_state =  ($AppKey == $keyFromReq?'認證通過':'認證失敗');
+        return response()->json([
+            'auth_state'=>$auth_state,
+            'http_method'=>$request->method(),
+            'header' => $request->header(),
+            'request_all'=>$request->getContent(),
+        ],200,[],JSON_UNESCAPED_UNICODE);
     }
 }

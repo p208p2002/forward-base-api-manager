@@ -1,5 +1,5 @@
-# Laravel API Services Manager (LASM)
-A Forward base API Services Manager with Account System
+# 轉發式API管理與帳號認證系統
+轉發式API管理與帳號認證系統
 - Laravel 5.8
 - MySQL 4.8
 - PHP 7.2
