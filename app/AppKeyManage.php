@@ -13,4 +13,10 @@ class AppKeyManage extends Model
     public function appLimit(){
         return $this->hasMany('App\UserAuthLimit','app_id','id');
     }
+
+    public function delete()
+    {
+        $this->appLimit()->delete();
+        return parent::delete();
+    }
 }
