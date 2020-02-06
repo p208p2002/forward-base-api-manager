@@ -44,7 +44,6 @@ class ServiceAccess extends Controller
 
         // get app key
         $appKey = null;
-       
         $AKM = AppKeyManage::where('name',$targetApp)->first();
         if ($AKM == null) {
             return response()->json([
@@ -76,7 +75,7 @@ class ServiceAccess extends Controller
                 'ServerMsg' => 'match http method fail'
             ], 500);
         }
-        
+        //success request forword
         return response($response->content,$response->status,$response->headers);
     }
 }
