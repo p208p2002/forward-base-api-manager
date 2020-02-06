@@ -18,7 +18,12 @@ class ServiceAccess extends Controller
     {
         $reqMethod = $request->method();
         $header = $request->header();
-        $inputData = $request->all(); //$request->getContent()   
+        $inputQuery = $request->query();
+        $inputQueryUrl = '';
+        if (count($inputQuery) != 0){
+            $inputQueryUrl = '?'.http_build_query($inputQuery);
+        }
+        $inputData = $request->getContent(); //$request->getContent()
         $targetApp = $request->header('AppName');
         if ($targetApp == null) {
             return response()->json([
@@ -49,7 +54,7 @@ class ServiceAccess extends Controller
 
         $appKey = $AKM->key;
         array_push($newHeaders, 'AppKey' . ':' . strval($appKey));
-        $curl =  Curl::to($service_url)
+        $curl =  Curl::to($service_url.$inputQueryUrl)
             ->withHeaders($newHeaders)                    
             ->withData($inputData)
             ->withResponseHeaders()

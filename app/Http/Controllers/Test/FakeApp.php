@@ -23,6 +23,7 @@ class FakeApp extends Controller
             'http_method'=>$request->method(),
             'header' => $request->header(),
             'request_all'=>$request->all(),
+            'full_url'=>$request->fullUrl()
         ],200,[],JSON_UNESCAPED_UNICODE);
     }
 }
