@@ -1,5 +1,11 @@
-# UDIC Service PlatForm
-HOST/Prefix/Action
+# Laravel API Services Manager (LASM)
+A Forward base API Services Manager with Account System
+- Laravel 5.8
+- MySQL 4.8
+- PHP 7.2
+## Feature
+...
+
 ## Prefix
 - /api
 ## Action
