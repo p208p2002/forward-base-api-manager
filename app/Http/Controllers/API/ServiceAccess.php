@@ -18,8 +18,7 @@ class ServiceAccess extends Controller
     {
         $reqMethod = $request->method();
         $header = $request->header();
-        $inputData = $request->getContent();
-        // dd($inputData,$header);  
+        $inputData = $request->all(); //$request->getContent()   
         $targetApp = $request->header('AppName');
         if ($targetApp == null) {
             return response()->json([

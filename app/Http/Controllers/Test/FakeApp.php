@@ -22,7 +22,7 @@ class FakeApp extends Controller
             'auth_state'=>$auth_state,
             'http_method'=>$request->method(),
             'header' => $request->header(),
-            'request_all'=>$request->getContent(),
+            'request_all'=>$request->all(),
         ],200,[],JSON_UNESCAPED_UNICODE);
     }
 }
