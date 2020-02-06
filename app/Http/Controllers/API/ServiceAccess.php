@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Ixudra\Curl\Facades\Curl;
 use App\AppKeyManage;
+use App\User;
+
 class ServiceAccess extends Controller
 {
     /**
@@ -75,7 +77,19 @@ class ServiceAccess extends Controller
                 'ServerMsg' => 'match http method fail'
             ], 500);
         }
-        //success request forword
+        // 完成請求，扣除使用次數
+        $user = User::where('api_token', $request->header('Authorization'))->first();
+        $req_remain = $user->appAuth->where('app_id',$AKM->id)->first();
+        // dd($req_remain->free_remain_request_times_pre_day);
+        if($req_remain->free_remain_request_times_pre_day > 0){
+            $req_remain->free_remain_request_times_pre_day--;
+        }
+        else{
+            $req_remain->remain_request_times--;
+        }
+        $req_remain->save();
+
+        // success request forword
         return response($response->content,$response->status,$response->headers);
     }
 }
