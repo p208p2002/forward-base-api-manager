@@ -1,6 +1,12 @@
 # 服務部屬
-## 安裝相依套件
-## Corn job
+## 1. 安裝相依套件
+**一般的laravel佈署方式**
+- `cp .env.example .env`
+- 設置`.env`
+- `php artisan k:g`
+- `$ composer install`
+
+## 2. Corn job(自動排程)
 讓系統自動刷新每日的帳號免費請求次數
 
 **此功能必須運行在Linux底下**
