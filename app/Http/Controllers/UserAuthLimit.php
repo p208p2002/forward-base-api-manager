@@ -108,7 +108,7 @@ class UserAuthLimit extends Controller
         $giveAuth = $request->giveAuth;
         $giveAuth = explode(',', $giveAuth);
 
-        if($giveAuth == ''){
+        if($giveAuth[0] == '' || $giveAuth[1] == ''){
             return back();
         }
         
