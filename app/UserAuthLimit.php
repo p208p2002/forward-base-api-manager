@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserAuthLimit extends Model
 {
@@ -14,20 +15,6 @@ class UserAuthLimit extends Model
         return $this->belongsTo('App\AppKeyManage', 'app_id', 'id');
     }
     //
-    protected function getKeyForSaveQuery()
-    {
-
-        $primaryKeyForSaveQuery = array(count($this->primaryKey));
-
-        foreach ($this->primaryKey as $i => $pKey) {
-            $primaryKeyForSaveQuery[$i] = isset($this->original[$this->getKeyName()[$i]])
-                ? $this->original[$this->getKeyName()[$i]]
-                : $this->getAttribute($this->getKeyName()[$i]);
-        }
-
-        return $primaryKeyForSaveQuery;
-    }
-
     /**
      * Set the keys for a save update query.
      *
@@ -36,11 +23,34 @@ class UserAuthLimit extends Model
      */
     protected function setKeysForSaveQuery(Builder $query)
     {
+        $keys = $this->getKeyName();
+        if (!is_array($keys)) {
+            return parent::setKeysForSaveQuery($query);
+        }
 
-        foreach ($this->primaryKey as $i => $pKey) {
-            $query->where($this->getKeyName()[$i], '=', $this->getKeyForSaveQuery()[$i]);
+        foreach ($keys as $keyName) {
+            $query->where($keyName, '=', $this->getKeyForSaveQuery($keyName));
         }
 
         return $query;
+    }
+
+    /**
+     * Get the primary key value for a save query.
+     *
+     * @param mixed $keyName
+     * @return mixed
+     */
+    protected function getKeyForSaveQuery($keyName = null)
+    {
+        if (is_null($keyName)) {
+            $keyName = $this->getKeyName();
+        }
+
+        if (isset($this->original[$keyName])) {
+            return $this->original[$keyName];
+        }
+
+        return $this->getAttribute($keyName);
     }
 }
