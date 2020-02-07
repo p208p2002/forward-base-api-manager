@@ -18,11 +18,17 @@
 ## 架構與原理
 ![系統架構圖](https://github.com/p208p2002/forward-base-api-manager/blob/master/md_imgs/sys_arch.png)
 
-## 使用流程說明
+## API連接實作流程
 1. 使用admin帳號登入系統
 2. 將API註冊至系統上
 3. API端檢查每個請求是否有包含`AppKey`
 > 如果沒有包含登記的AppKey應拒絕此請求
+
+## 呼叫流程
+- 客戶端的請求`header`提供`Authorization`和`AppName`供FBAM認證
+> 認證包含token檢查與使用者是否具有該API的存取權限
+- 通過認證的HTTP請求會由FBAM在此次請求中塞入對應的`AppKey`
+- API端檢查`header`中提供的`AppKey`使否符合，若符合回復訊息
 
 > 實現範例參見[FakeApp.php](https://github.com/p208p2002/forward-base-api-manager/blob/master/app/Http/Controllers/Test/FakeApp.php)
 
