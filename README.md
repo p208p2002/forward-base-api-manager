@@ -4,7 +4,7 @@
 - MySQL 4.8
 - PHP 7.2
 ## Feature
-...
+
 
 ## Corn job
 讓系統自動刷新每日的帳號免費請求次數

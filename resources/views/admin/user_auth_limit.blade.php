@@ -65,7 +65,7 @@
                             <select class="custom-select" name="giveAuth">
                                 <option value="" selected>選擇服務...</option>
                                 @foreach ($AKM as $akm)
-                            <option value="{{$akm->id}},{{$user->id}}">{{$akm->name}}</option>
+                                <option value="{{$akm->id}},{{$user->id}}">{{$akm->name}}</option>
                                 @endforeach
                             </select>
                             <div class="input-group-append">
@@ -83,6 +83,7 @@
                         style="margin-bottom:0px;">
                         @csrf
                         @method('DELETE')
+                        <input type="hidden" name="uid" value="{{$user->id}}">
                         <span>{{$user_app->appKeyManage->name}}
                             <br /><small>每日免費剩餘:{{$user_app->free_remain_request_times_pre_day}}
                                 購買剩餘:{{$user_app->remain_request_times}}</small></span>

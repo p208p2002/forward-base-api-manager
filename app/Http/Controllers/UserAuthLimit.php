@@ -95,10 +95,10 @@ class UserAuthLimit extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         // 撤銷使用者權限
-        $uid = Auth::user()->id;
+        $uid = $request->uid;
         $app_id = $id;
         UAL::where('uid',$uid)->where('app_id',$app_id)->delete();
         return back();
