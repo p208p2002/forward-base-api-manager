@@ -7,8 +7,14 @@
 ...
 
 ## Corn job
-`00 00   * * *  cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
+- 編輯 corn job `$ vim etc/crontab`
+```
+# 每天 00:00 執行laravel排程
+00 00   * * *  cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+```
 > [corn job](https://jqnets.com/blog/ubuntu-%E6%8E%92%E7%A8%8B%E8%A8%AD%E5%AE%9A-%EF%BC%9Acrontab-%E6%8E%92%E7%A8%8B%E4%BD%BF%E7%94%A8%E6%95%99%E5%AD%B8/)
+
+- 開啟corn `$ service cron start`
 
 ## API Document
 [API Document](https://documenter.getpostman.com/view/981584/SWTG6bHK?version=latest)
