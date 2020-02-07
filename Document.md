@@ -4,6 +4,7 @@
 ## API端實作說明
 欲實作的API應該先設置一組AppKey(字串，自訂)
 ![api_manage](https://github.com/p208p2002/forward-base-api-manager/blob/master/api_manage.png)
+![系統架構圖](https://github.com/p208p2002/forward-base-api-manager/blob/master/sys_arch.png)
 然後檢查每次進來的請求(透過/service)的Header擁有AppKey，並且確保符合
 接下來在APP內的實作應該與平常無異，可以正常拿到所有資訊
 
