@@ -64,9 +64,14 @@
                     <span>沒有可存取的服務</span>
                     @endif
                     @foreach ($user->appAuth as $user_app)
-                    <span>{{$user_app->appKeyManage->name}} 每日免費剩餘:{{$user_app->free_remain_request_times_pre_day}}
-                        購買剩餘:{{$user_app->remain_request_times}}</span>
-                    <br>
+                    <form action="{{url('admin/user-auth-limit/'.$user_app->appKeyManage->id)}}" method="post" style="margin-bottom:0px;">
+                        @csrf
+                        @method('DELETE')
+                        <span>{{$user_app->appKeyManage->name}}
+                            <br /><small>每日免費剩餘:{{$user_app->free_remain_request_times_pre_day}}
+                                購買剩餘:{{$user_app->remain_request_times}}</small></span>
+                        <button class="btn btn-danger btn-sm" type="submit">撤銷</button>
+                    </form>
                     @endforeach
                 </div>
             </div>

@@ -96,7 +96,11 @@ class UserAuthLimit extends Controller
      */
     public function destroy($id)
     {
-        //
+        // 撤銷使用者權限
+        $uid = Auth::user()->id;
+        $app_id = $id;
+        UAL::where('uid',$uid)->where('app_id',$app_id)->delete();
+        return back();
     }
 
     public function addAuth(Request $request){
@@ -112,7 +116,7 @@ class UserAuthLimit extends Controller
         $appFreeRequestPreDay = AppKeyManage::where('id',$giveAuth)->first()->free_request_times_pre_day;
         $userAuthLimit->free_remain_request_times_pre_day = $appFreeRequestPreDay;
         $userAuthLimit->save();
-        
+
         return back();
     }
 }
