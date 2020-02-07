@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\AppKeyManage;
+use App\UserAuthLimit as UAL;
+use Illuminate\Foundation\Console\Presets\React;
 use Illuminate\Http\Request;
 
 class UserAuthLimit extends Controller
@@ -22,8 +26,8 @@ class UserAuthLimit extends Controller
             $users = USER::where('email',$query)->get();
             // User::where('email',$query)->first()->appAuth;
         }
-            
-        return view('admin.user_auth_limit',["users"=>$users]);
+        $AKM = AppKeyManage::all();
+        return view('admin.user_auth_limit',["users"=>$users,"AKM"=>$AKM]);
     }
 
     /**
@@ -93,5 +97,22 @@ class UserAuthLimit extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addAuth(Request $request){
+        $giveAuth = $request->giveAuth;
+        if($giveAuth == ''){
+            return back();
+        }
+        
+        $uid = Auth::user()->id;
+        $userAuthLimit = new UAL();
+        $userAuthLimit->uid = $uid;
+        $userAuthLimit->app_id = $giveAuth;
+        $appFreeRequestPreDay = AppKeyManage::where('id',$giveAuth)->first()->free_request_times_pre_day;
+        $userAuthLimit->free_remain_request_times_pre_day = $appFreeRequestPreDay;
+        $userAuthLimit->save();
+        
+        return back();
     }
 }

@@ -43,12 +43,29 @@
                     <br>
                     <b>APP存取權限</b>
                     <hr>
-                    
+                    <span><b>授予權限</b></span><br>
+                    <form action="{{url('admin/user-auth-limit/add-auth')}}" method="post">
+                        @csrf
+                        <div class="input-group">
+                            <select class="custom-select" name="giveAuth">
+                                <option value="" selected>選擇服務...</option>
+                                @foreach ($AKM as $akm)
+                                <option value="{{$akm->id}}">{{$akm->name}}</option>
+                                @endforeach
+                            </select>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">授予權限</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <span><b>已授予權限</b></span><br>
                     @if (count($user->appAuth) == 0)
-                        <span>沒有可存取的服務</span>
+                    <span>沒有可存取的服務</span>
                     @endif
                     @foreach ($user->appAuth as $user_app)
-                    <span>{{$user_app->appKeyManage->name}} 每日免費剩餘:{{$user_app->free_remain_request_times_pre_day}}  購買剩餘:{{$user_app->remain_request_times}}</span>
+                    <span>{{$user_app->appKeyManage->name}} 每日免費剩餘:{{$user_app->free_remain_request_times_pre_day}}
+                        購買剩餘:{{$user_app->remain_request_times}}</span>
                     <br>
                     @endforeach
                 </div>

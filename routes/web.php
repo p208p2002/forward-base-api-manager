@@ -23,6 +23,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth.admin']],function(){
     });
     Route::resource('/app-key-manage', 'AppKeyManageController');
     Route::resource('/user-auth-limit', 'UserAuthLimit');
+    Route::post('/user-auth-limit/add-auth','UserAuthLimit@addAuth');
 });
 
 Auth::routes();
