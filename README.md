@@ -14,6 +14,7 @@
 ## 文檔
 - [佈署說明](https://github.com/p208p2002/forward-base-api-manager/blob/master/Deploy.md)
 - [使用文件](https://github.com/p208p2002/forward-base-api-manager/blob/master/Document.md)
+- [可用API](https://github.com/p208p2002/forward-base-api-manager/blob/master/API.md)
 
 ## 架構與原理
 ![系統架構圖](https://github.com/p208p2002/forward-base-api-manager/blob/master/md_imgs/sys_arch.png)
