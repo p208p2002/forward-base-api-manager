@@ -40,4 +40,10 @@ class User extends Authenticatable
     public function appAuth(){
         return $this->hasMany('App\UserAuthLimit','uid','id');
     }
+
+    public function delete()
+    {
+        $this->appAuth()->delete();
+        return parent::delete();
+    }
 }
