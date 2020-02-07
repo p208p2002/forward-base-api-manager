@@ -106,15 +106,17 @@ class UserAuthLimit extends Controller
 
     public function addAuth(Request $request){
         $giveAuth = $request->giveAuth;
+        $giveAuth = explode(',', $giveAuth);
+
         if($giveAuth == ''){
             return back();
         }
         
-        $uid = Auth::user()->id;
+        $uid = $giveAuth[1];
         $userAuthLimit = new UAL();
         $userAuthLimit->uid = $uid;
-        $userAuthLimit->app_id = $giveAuth;
-        $appFreeRequestPreDay = AppKeyManage::where('id',$giveAuth)->first()->free_request_times_pre_day;
+        $userAuthLimit->app_id = $giveAuth[0];
+        $appFreeRequestPreDay = AppKeyManage::where('id',$giveAuth[0])->first()->free_request_times_pre_day;
         $userAuthLimit->free_remain_request_times_pre_day = $appFreeRequestPreDay;
         $userAuthLimit->save();
 

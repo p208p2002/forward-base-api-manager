@@ -65,7 +65,7 @@
                             <select class="custom-select" name="giveAuth">
                                 <option value="" selected>選擇服務...</option>
                                 @foreach ($AKM as $akm)
-                                <option value="{{$akm->id}}">{{$akm->name}}</option>
+                            <option value="{{$akm->id}},{{$user->id}}">{{$akm->name}}</option>
                                 @endforeach
                             </select>
                             <div class="input-group-append">
