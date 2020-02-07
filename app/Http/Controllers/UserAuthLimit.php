@@ -20,7 +20,7 @@ class UserAuthLimit extends Controller
         //
         $query = $request->q;
         if($query == null){
-            $users = USER::latest()->limit(10)->get();
+            $users = USER::latest()->limit(30)->get();
         }
         else{
             $users = USER::where('email',$query)->get();
