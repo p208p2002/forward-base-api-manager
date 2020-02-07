@@ -50,7 +50,8 @@ class UserAuthLimit extends Controller
     {
         //
         $users = USER::where('email',$request->email)->get();
-        return view('admin.user_auth_limit',["users"=>$users]);
+        $AKM = AppKeyManage::all();
+        return view('admin.user_auth_limit',["users"=>$users,"AKM"=>$AKM]);
     }
 
     /**
