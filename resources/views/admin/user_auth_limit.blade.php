@@ -7,11 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>UDIC</title>
+    <style>
+        #UserAuthLimit .card-del {
+            position: absolute !important;
+            top: 5px;
+            right: 5px;
+        }
+    </style>
 </head>
 @section('right_content')
 
 <body>
-    <div class="container">
+    <div id="UserAuthLimit" class="container">
         <div class="card">
             <div class="card-body">
                 <form action="{{url('admin/user-auth-limit')}}" method="post">
@@ -29,6 +36,14 @@
         <hr>
         @foreach ($users as $user)
         <div class="card" style="margin-top:10px">
+            <button class="card-del btn btn-sm btn-danger"
+                onclick="event.preventDefault();document.getElementById('{{"KeyDel".$user->id}}').submit();">
+                del</button>
+            <form style="position:absolute;" id={{"KeyDel".$user->id}}
+                action="{{ url('admin/user-manage/'.$user->id) }}" method="POST">
+                @method('DELETE')
+                @csrf
+            </form>
             <div class="card-body">
                 <h5 class="card-title">{{$user->name}}</h5>
                 <div class="card-text">
@@ -64,7 +79,8 @@
                     <span>沒有可存取的服務</span>
                     @endif
                     @foreach ($user->appAuth as $user_app)
-                    <form action="{{url('admin/user-auth-limit/'.$user_app->appKeyManage->id)}}" method="post" style="margin-bottom:0px;">
+                    <form action="{{url('admin/user-auth-limit/'.$user_app->appKeyManage->id)}}" method="post"
+                        style="margin-bottom:0px;">
                         @csrf
                         @method('DELETE')
                         <span>{{$user_app->appKeyManage->name}}
