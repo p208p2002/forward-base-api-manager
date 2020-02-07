@@ -16,7 +16,7 @@
 - [使用文件](https://github.com/p208p2002/forward-base-api-manager/blob/master/Document.md)
 
 ## 架構與原理
-![系統架構圖](https://github.com/p208p2002/forward-base-api-manager/blob/master/sys_arch.png)
+![系統架構圖](https://github.com/p208p2002/forward-base-api-manager/blob/master/md_imgs/sys_arch.png)
 
 ## 使用流程說明
 1. 使用admin帳號登入系統
