@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\AppKeyManage;
+use App\UserAuthLimit;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,8 +26,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call(function () {
+            //每日刷新免費次數
+            $AKM = AppKeyManage::all();
+            foreach ($AKM as $akm) {
+                $refresh_freq = $akm->free_request_times_pre_day;
+                $refresh_app_id = $akm->id;
+                UserAuthLimit::where('app_id', $refresh_app_id)
+                    ->update(['free_remain_request_times_pre_day' => $refresh_freq]);
+            }
+        })->daily();
     }
 
     /**
@@ -35,7 +45,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
