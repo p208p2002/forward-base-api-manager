@@ -1,6 +1,10 @@
 ## API Document
 [API呼叫範例](https://documenter.getpostman.com/view/981584/SWTG6bHK?version=latest)
 
+## 設置admin帳號
+- 註冊帳號後修改資料庫中user資料表欄位
+- is_admin -> 1
+
 ## API端實作說明
 欲實作的API應該先設置一組AppKey(字串，自訂)
 
@@ -9,24 +13,24 @@
 然後檢查每次進來的請求(透過/service)的Header擁有AppKey，並且確保符合
 接下來在APP內的實作應該與平常無異，可以正常拿到所有資訊
 
-## 設置admin帳號
-- 註冊帳號後修改資料庫中user資料表欄位
-- is_admin -> 1
+## 授予個別帳號權限
+- 進入 Admin Board > 使用者權限管理
+- 授予權限
+<img src="https://github.com/p208p2002/forward-base-api-manager/blob/master/md_imgs/user_auth.png" alt="user_auth" width="550" srcset="">
 
-## API Prefix
-- /api
-## Action
-## Post:/login
+## 可用API
+- API Prefix: /api
+### Post:/login
 登入取得token
-### Body Data
+#### Body Data
 - account:str(email)
 - password:str
-### 返回
+#### 返回
 ```
 {"Token":"iyJSbyAj1b0Q5em3H8KmzgVK11anBa43jxuKHzHFRGa7b3AKep54BgSJXI49"}
 ```
 
-## Any:/service/{uri}
+### Any:/service/{uri}
 - 轉送服務給UDIC服務，中介允許執行認證功能
 - Http Method、Header Data、Body Data都會被轉送
 > GET、POST、PUT、DELETE、PATCH
