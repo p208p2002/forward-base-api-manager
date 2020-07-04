@@ -37,7 +37,7 @@ class ServiceAccess extends Controller
         $response = null;
         $newHeaders = array();
         foreach ($header as $key => $value) {
-            $headerNotJoin = array("content-length");
+            $headerNotJoin = array("content-length","content-encoding","transfer-encoding","location");
             if (!in_array($key, $headerNotJoin)) {
                 array_push($newHeaders, $key . ':' . strval($value[0]));
             }
